@@ -1,0 +1,240 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Merriweather Sans", sans-serif;
+    color: white;
+    background: #11121A;
+    padding: 0;
+    margin: 0;
+}
+
+/* || Header Section */
+header {
+    background: #1C1C24;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-family: 'Akaya Kanadaka', cursive;
+}
+
+.header-container {
+    max-width: 1250px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.header-container .logo {
+    height: 50px;
+    margin-right: 15px;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.header-container .logo img {
+    height: 100%;
+}
+
+
+/* || Search Section */
+.search {
+    width: 100%;
+    max-width: 1250px;
+    margin: 30px auto 0 auto;
+    padding: 0 25px;
+}
+
+.search-container {
+    background: #1C1C24;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #222328;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.input-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.input-container input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.input-container span {
+    width: 15px;
+    font-size: 25px;
+    margin: 0px 5px 0px 0px;
+}
+
+.button-container {
+    background: #3060FF;
+    padding: 0 20px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.button-container:hover {
+    background: #5a81ff;
+}
+
+/* || Jobs Section */
+.jobs-list {
+    background: #11121A;
+    max-width: 1250px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px 50px 25px;
+}
+
+.jobs-list h1 {
+    font-size: 18px;
+    margin: 35px 0 25px 25px;
+}
+
+.jobs-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    background: #11121A;
+}
+
+.job-tile {
+    background: #1C1C24;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 20px;
+    line-height: 1.3;
+    color: white;
+    -webkit-transition: transform 0.2s;
+    -moz-transition: transform 0.2s;
+    -ms-transition: transform 0.2s;
+    transition: transform 0.2s;
+}
+
+.job-tile:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.job-tile .top {
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.job-tile .top img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.job-tile .rolename {
+    margin: 20px 0 15px 0;
+}
+
+.rolename span {
+    font-size: 20px;
+}
+
+.job-tile .description {
+    height: 105px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    color: #96939B;
+    flex-grow: 1;
+    line-height: 1.4;
+    letter-spacing: 0.6px;
+}
+
+.buttons {
+    color: black;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+}
+
+.button {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #96939B;
+    background-color: #2E2E39;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.button.apply-now {
+    color: white;
+    background-color: #3060FF;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    transition: all 0.4s;
+    margin-right: 13px;
+}
+
+.button.apply-now:hover {
+    background: #5a81ff;
+}
+
+@media screen and (min-width: 1200px) {
+    .jobs-container {
+        grid-gap: 40px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .jobs-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .jobs-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
