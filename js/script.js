@@ -30,25 +30,25 @@ const getJobs = () => {
     });
 };
 
-const temp = () => {
-  fetch(
-    "https://job-search4.p.rapidapi.com/simplyhired/search?query=Software%20Engineer&page=2",
-    {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
-        "x-rapidapi-host": "job-search4.p.rapidapi.com",
-      },
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
+// const temp = () => {
+//   fetch(
+//     "https://job-search4.p.rapidapi.com/simplyhired/search?query=Software%20Engineer&page=2",
+//     {
+//       method: "GET",
+//       headers: {
+//         "x-rapidapi-key": "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+//         "x-rapidapi-host": "job-search4.p.rapidapi.com",
+//       },
+//     }
+//   )
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// };
 
 const showJobs = (jobs) => {
   const jobsContainer = document.querySelector(".jobs-container");
