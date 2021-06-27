@@ -11,6 +11,11 @@ body {
     background: #11121A;
     padding: 0;
     margin: 0;
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 /* || Header Section */
@@ -30,6 +35,19 @@ header {
     display: flex;
     align-items: center;
     padding: 0 25px;
+}
+
+.header-container a {
+    color: white;
+    text-decoration: none;
+    -webkit-transform: color 0.3s ease;
+    -moz-transform: color 0.3s ease;
+    -ms-transform: color 0.3s ease;
+    transform: color 0.3s ease;
+}
+
+.header-container a:hover {
+    color: rgba(255, 255, 255, 0.904);
 }
 
 .header-container .logo {
@@ -76,20 +94,23 @@ header {
     border: none;
     outline: none;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 20px;
+    padding-right: 25px;
+    letter-spacing: 0.8px;
 }
 
 .input-container span {
-    width: 15px;
-    font-size: 25px;
+    width: 5px;
+    font-size: 24px;
     margin: 0px 5px 0px 0px;
+    font-weight: 500;
 }
 
 .button-container {
     background: #3060FF;
     padding: 0 20px;
-    letter-spacing: 1px;
+    letter-spacing: 1.1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,6 +119,7 @@ header {
     -moz-transition: all 0.4s;
     -ms-transition: all 0.4s;
     transition: all 0.4s;
+    font-family: 'Akaya Kanadaka', cursive;
 }
 
 .button-container:hover {
@@ -116,7 +138,7 @@ header {
 }
 
 .jobs-list h1 {
-    font-size: 18px;
+    font-size: 16px;
     margin: 35px 0 25px 25px;
 }
 
@@ -130,7 +152,6 @@ header {
 .job-tile {
     background: #1C1C24;
     border-radius: 10px;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -205,6 +226,7 @@ header {
     background-color: #2E2E39;
     font-size: 14px;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .button.apply-now {
@@ -236,5 +258,17 @@ header {
 @media screen and (max-width: 576px) {
     .jobs-container {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .input-container input {
+        margin-left: 10px;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .input-container span {
+        padding-left: 20px !important;
     }
 }
