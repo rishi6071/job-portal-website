@@ -21,57 +21,63 @@ const getFilterTextFindJobs = () => {
 
 const getJobs = () => {
   // if promise fails then nothing returns
-  return fetch("https://api.npoint.io/b4408f3ff00cc5f7d4db", {
-    method: "GET",
-  })
+  // return fetch("https://api.npoint.io/b4408f3ff00cc5f7d4db", {
+  //   method: "GET",
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     return data;
+  //   });
+
+  return fetch(
+    "https://job-search4.p.rapidapi.com/simplyhired/search?query=Software%20Engineer&page=1",
+    {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+        "x-rapidapi-host": "job-search4.p.rapidapi.com",
+      },
+    }
+  )
     .then((response) => response.json())
     .then((data) => {
-      return data;
+      console.log(data);
+      return data.jobs;
+    })
+    .catch((err) => {
+      return err;
     });
 };
 
-// const temp = () => {
-//   fetch(
-//     "https://job-search4.p.rapidapi.com/simplyhired/search?query=Software%20Engineer&page=2",
-//     {
-//       method: "GET",
-//       headers: {
-//         "x-rapidapi-key": "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
-//         "x-rapidapi-host": "job-search4.p.rapidapi.com",
-//       },
-//     }
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-// };
-
-const showJobs = (jobs) => {
+const showJobs = (jobs = []) => {
   const jobsContainer = document.querySelector(".jobs-container");
 
   let jobsHTML = "";
-  console.log("Helo", jobs);
   [...jobs].forEach((job) => {
     jobsHTML += `<div class="job-tile">
       <div class="top">
-          <img src="${job.logo}" alt="${job.roleName}" />
+          <img src="./img/job.png" alt="${job.title}" />
           <span class="material-icons more_horiz">more_horiz</span>
       </div>
 
       <div class="rolename">
-          <span>${job.roleName}</span>
+          <span>${job.title}</span>
+      </div>
+
+      <div class="companyname">
+        <span>${job.company_name}</span>
+      </div>
+
+      <div class="location">
+        <span>Location: ${job.location}</span>
       </div>
 
       <div class="description">
-          <span>${job.requirements.content}</span>
+          <span>${job.description}</span>
       </div>
 
       <div class="buttons">
-          <a class="button apply-now" href="${job.applicationLink}" target="_blank">
+          <a class="button apply-now" href="${job.detail_url}" target="_blank">
               Apply Now
           </a>
           <a class="button">
@@ -107,14 +113,7 @@ const filterJobs = (jobs, searchText) => {
   }
 };
 
-// temp();
-
 // when the application is loaded
 getJobs().then((data) => {
   showJobs(data);
 });
-
-/**
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_lrvt3krh.json"  background="transparent"  speed="2"  style="width: 100%; height: 100%;"  loop controls autoplay></lottie-player>
- */
