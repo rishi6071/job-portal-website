@@ -11,26 +11,16 @@ document
 
 const getFilterTextFindJobs = () => {
   let text = document.querySelector("#filter-jobs").value;
-  getJobs().then((jobs) => {
-    let filteredJobs = filterJobs(jobs, text.trim().toLowerCase());
-
+  getJobs(text.trim()).then((jobs) => {
     // when the user try to filter the jobs
-    showJobs(filteredJobs);
+    showJobs(jobs);
   });
 };
 
-const getJobs = () => {
-  // if promise fails then nothing returns
-  // return fetch("https://api.npoint.io/b4408f3ff00cc5f7d4db", {
-  //   method: "GET",
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     return data;
-  //   });
-
+const getJobs = (search = "Software Engineer") => {
+  // if promise fails then Testing Data will be shown
   return fetch(
-    "https://job-search4.p.rapidapi.com/simplyhired/search?query=Software%20Engineer&page=1",
+    `https://job-search4.p.rapidapi.com/simplyhired/search?query=${search}&page=1`,
     {
       method: "GET",
       headers: {
@@ -41,8 +31,23 @@ const getJobs = () => {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       return data.jobs;
+    })
+    .catch((err) => {
+      console.log("ERROR");
+      return err;
+    });
+
+  // https://api.npoint.io/b4408f3ff00cc5f7d4db
+};
+
+const showTestingData = () => {
+  return fetch("https://api.npoint.io/b4408f3ff00cc5f7d4db", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
     })
     .catch((err) => {
       return err;
@@ -56,7 +61,9 @@ const showJobs = (jobs = []) => {
   [...jobs].forEach((job) => {
     jobsHTML += `<div class="job-tile">
       <div class="top">
-          <img src="./img/job.png" alt="${job.title}" />
+          <img src="${job.logo ? job.logo : "./img/job.png"}" alt="${
+      job.title
+    }" />
           <span class="material-icons more_horiz">more_horiz</span>
       </div>
 
@@ -93,27 +100,15 @@ const showJobs = (jobs = []) => {
   jobsContainer.innerHTML = jobsHTML;
 };
 
-const filterJobs = (jobs, searchText) => {
-  if (searchText) {
-    let filteredJobs = jobs.filter((job) => {
-      if (
-        job.roleName.toLowerCase().includes(searchText) ||
-        job.type.toLowerCase().includes(searchText) ||
-        job.company.toLowerCase().includes(searchText) ||
-        job.requirements.intro.toLowerCase().includes(searchText) ||
-        job.location.toLowerCase().includes(searchText) ||
-        job.requirements.content.toLowerCase().includes(searchText)
-      ) {
-        return true;
-      }
-    });
-    return filteredJobs;
-  } else {
-    return jobs;
-  }
-};
-
 // when the application is loaded
 getJobs().then((data) => {
-  showJobs(data);
+  let testData = [];
+  if (!data) {
+    showTestingData().then((resData) => {
+      testData = resData;
+      showJobs(testData);
+    });
+  } else {
+    showJobs(data);
+  }
 });
