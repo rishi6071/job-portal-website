@@ -18,6 +18,9 @@ const getFilterTextFindJobs = () => {
 };
 
 const getJobs = (search = "Software Engineer") => {
+  // Starting the Waiting Loader untill the Data comes
+  document.querySelector('.waiting_loader').style.display = "block";
+
   // if promise fails then Testing Data will be shown
   return fetch(
     `https://job-search4.p.rapidapi.com/simplyhired/search?query=${search}&page=1`,
@@ -34,14 +37,13 @@ const getJobs = (search = "Software Engineer") => {
       return data.jobs;
     })
     .catch((err) => {
-      console.log("ERROR");
       return err;
     });
 
   // https://api.npoint.io/b4408f3ff00cc5f7d4db
 };
 
-const showTestingData = () => {
+const getTestingData = () => {
   return fetch("https://api.npoint.io/b4408f3ff00cc5f7d4db", {
     method: "GET",
   })
@@ -94,9 +96,10 @@ const showJobs = (jobs = []) => {
   </div>`;
   });
 
-  document.querySelector(".jobs-list h1 span").innerText = jobs.length
-    ? jobs.length
-    : 0;
+  document.querySelector(".jobs-list h1 span").innerText = jobs.length ? jobs.length : 0;
+
+  // Stop the Waiting loader just before Content Rendering
+  document.querySelector('.waiting_loader').style.display = "none";
   jobsContainer.innerHTML = jobsHTML;
 };
 
@@ -104,7 +107,7 @@ const showJobs = (jobs = []) => {
 getJobs().then((data) => {
   let testData = [];
   if (!data) {
-    showTestingData().then((resData) => {
+    getTestingData().then((resData) => {
       testData = resData;
       showJobs(testData);
     });

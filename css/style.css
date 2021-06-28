@@ -19,6 +19,13 @@ a {
     text-decoration: none;
 }
 
+.waiting_loader {
+    width: 65px;
+    height: auto;
+    display: none;
+    margin: 35px auto;
+}
+
 /* || Header Section */
 header {
     background: #1C1C24;
